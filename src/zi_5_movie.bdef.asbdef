@@ -1,0 +1,44 @@
+managed; // implementation in class zbp_i_5_movie unique;
+//strict ( 2 ); //Uncomment this line in order to enable strict mode 2. The strict mode has two variants (strict(1), strict(2)) and is prerequisite to be future proof regarding syntax and to be able to release your BO.
+
+define behavior for ZI_5_Movie //alias <alias_name>
+persistent table zabap_movie_a
+lock master
+//authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  field ( readonly, numbering: managed ) MovieUuid;
+  association _Ratings { create; }
+
+  mapping for zabap_movie_a corresponding{
+        MovieUuid = movie_uuid;
+        Title = title;
+        Genre = genre;
+        PublishingYear = publishing_year;
+        RuntimeInMin = runtime_in_min;
+        ImageUrl = image_url;
+        CreatedAt = created_at;
+        CreatedBy = created_by;
+        LastChangedAt = last_changed_at;
+        LastChangedBy = last_changed_by;
+  }
+}
+define behavior for ZI_5_Rating //alias <alias_name>
+persistent table zabap_rating_a
+lock dependent by _Movies
+//authorization dependent by <association>
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) MovieUuid;
+  field ( readonly, numbering: managed ) RatingUuid;
+  association _Movies;
+
+  mapping for zabap_rating_a corresponding{
+        MovieUuid = movie_uuid;
+  }
+}

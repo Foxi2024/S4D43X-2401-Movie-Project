@@ -3,7 +3,8 @@
 @AbapCatalog.preserveKey: true
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Movie'
-define view ZI_5_Movie as select from zabap_movie_a
+define root view ZI_5_Movie as select from zabap_movie_a
+composition [0..*] of ZI_5_Rating as _Ratings 
 {
   key movie_uuid as MovieUuid,
   title as Title,
@@ -14,5 +15,6 @@ define view ZI_5_Movie as select from zabap_movie_a
   created_at as CreatedAt,
   created_by as CreatedBy,
   last_changed_at as LastChangedAt,
-  last_changed_by as LastChangedBy
+  last_changed_by as LastChangedBy,
+  _Ratings
 }

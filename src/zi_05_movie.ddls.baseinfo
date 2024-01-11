@@ -6,7 +6,9 @@
 "ZABAP_MOVIE_A"
 ],
 "ASSOCIATED":
-[],
+[
+"ZI_5_RATING"
+],
 "BASE":
 [],
 "ANNO_REF":

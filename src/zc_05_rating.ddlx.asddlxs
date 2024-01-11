@@ -1,0 +1,42 @@
+@Metadata.layer: #CUSTOMER
+
+@UI.headerInfo:{  typeNamePlural: 'Ratings',
+                  title.value: 'Rating', 
+                  description.value: 'UserName'
+               }
+
+
+                  
+//@UI.presentationVariant: [{ sortOrder: [{ by: 'Flightdate', direction: #DESC }] }]
+
+annotate view ZC_5_Rating   
+  with {
+  
+  /*Facets*/
+  //Überschrift Details fehlt
+  @UI.facet: [  
+              {position: 10, label: 'Rating Details', type: #FIELDGROUP_REFERENCE, targetQualifier: 'details'},
+              {position: 20, label: 'Administrative Data', type: #FIELDGROUP_REFERENCE, targetQualifier: 'data'}
+             ]
+
+/*Fields*/
+  @UI.lineItem: [{ position: 10}]
+  @UI.fieldGroup: [{qualifier: 'details', position: 10}]
+  UserName;
+  
+  @UI.lineItem: [{ position: 20}]
+  @UI.fieldGroup: [{qualifier: 'details', position: 20}]
+  Rating;
+  
+  @UI.fieldGroup: [{qualifier: 'data', position: 10}]
+  RatingUuid;
+  
+  @UI.fieldGroup: [{qualifier: 'data', position: 20}]
+  MovieUuid;
+  
+  @UI.lineItem: [{ position: 30}]
+  @UI.fieldGroup: [{qualifier: 'data', position: 30}]
+  RatingDate;
+  
+  
+ }
